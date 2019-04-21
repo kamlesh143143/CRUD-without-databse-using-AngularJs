@@ -1,0 +1,19 @@
+<style>
+   table, th , td {
+      border: 1px solid grey;
+      border-collapse: collapse;
+      padding: 5px;
+   }
+   table tr.data:nth-child(odd) {
+      background-color: #ffffff;
+      color: green;
+   }
+   table tr.data:nth-child(even) {
+      background-color: #ffffff;
+      color: red;
+   }
+   table tr.header {
+      background-color: #ffffff;
+      color: blue;     
+   }
+</style>

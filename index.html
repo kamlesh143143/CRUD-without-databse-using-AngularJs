@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <title>Welcome to User Management</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="angular.min.js"></script>
+    </head>
+    <body ng-app="myApp" ng-controller="myController" ng-init="loadUsers();">
+    	<center><h1>User Management Using AngularJs</h1>
+        	<form name="myForm" novalidate> 
+    			<table border="2">
+	    		<tr>
+	    			<td colspan="5">
+	    				<center>
+	    					<h1>
+		    					<label ng-show="edit"> Edit User</label>
+		    					<label ng-show="!edit">Create User</label>
+		    				</h1>	
+	    				</center>
+	    				
+		    		</td>
+	    		</tr>	
+		    	<input type="hidden" ng-model="index">
+		    	<tr>
+		    		<td>Roll No:</td>
+		    		<td>
+		    			<input type="text" name="roll" ng-model="roll" required> 
+		        		<span ng-show="myForm.roll.$error.required">Roll no is Required</span>
+		       		</td>
+		    	</tr>
+		        <tr>
+		        	<td>Name :</td>
+		        	<td>
+		        		<input type="text" name="name" ng-model="name" required>
+		        		<span ng-show="myForm.name.$error.required">Name is Required.</span>
+		        	</td>
+		        </tr>
+		        <tr>
+		        	<td>Email :</td>
+		        	<td>
+		        		<input type="email" name="email" ng-model="email" required>
+		        		<span ng-show="myForm.email.$error.required">Email is Required</span>
+		        		<span ng-show="myForm.email.$error.email">Email is invalid!</span>
+		        	</td>
+		        </tr>
+		        <tr>
+		        	<td colspan="5">
+		        		<center>
+		        			<button ng-show="!edit" ng-click="addUser()">Add</button>
+		        			<button ng-show="edit" ng-click="addUser()">Update</button>	
+		        		</center>
+		        	</td>
+		        </tr>
+    			</table>
+    		</form>
+        <br>
+        	<h2>{{msg}}</h2>
+       	<br>
+
+
+    	<table border="2">
+        	<tr>
+        		<th colspan="6">User's List</th>
+        	</tr>
+        	<tr class="header">
+        		<th>No.</th>
+        		<th>Roll No</th>
+        		<th>Name</th>
+        		<th>Email</th>
+        		<th colspan="2">Action</th>
+        	</tr>
+        	<tr class="data" ng-repeat="user in users | orderBy:'roll'">
+        		<td>{{$index + 1}}</td>
+        		<td>{{user.roll | uppercase}}</td>
+        		<td>{{user.name}}</td>
+        		<td>{{user.email}}</td>
+        		<td ng-click="editUser(user,$index)">Edit</td>
+        		<td ng-click=removeUser($index)>Delete</td>
+        	</tr>
+        </table>
+        
+
+        </center>
+    </body>
+    <script src="script.js"></script>
+</html>
